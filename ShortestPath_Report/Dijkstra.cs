@@ -8,10 +8,10 @@ namespace ShortestPath_Report
 {
     internal class Dijkstra
     {
-        const int INF = 99999;      // 단절을 상수로 구현 // 99999는 오버플로우를 방지하기위해 설정한 값
-
+        const int INF = 99999;      // 단절을 상수로 구현, 99999는 오버플로우를 방지하기위해 설정한 값
         public static void ShortestPath(in int[,] graph, in int start, out int[] distance, out int[] path)
-        // distance는 거리(가중치)
+        // distance : 거리(가중치)
+        // path : 이동 정점
         {
             //============초기화============
             int size = graph.GetLength(0);
@@ -29,29 +29,29 @@ namespace ShortestPath_Report
             for (int i = 0; i < size; i++)
             {
                 // 1. 방문하지 않은 정점 중 가장 가까운 정점부터 탐색
-                int next = -1;
+                int next = -1;                                // 방문가능한 정점의 변수
                 int minCost = INF;                            // 가장 작은값은 가진 정점으로 갱신하기위한 변수
                 for (int j = 0; j < size; j++)
                 {
-                    if (!visited[j] && distance[j] < minCost) // 방문하지않았으면서 가장 거리가 짧은곳
+                    if (!visited[j] && distance[j] < minCost) // 방문하지않았으면서(!visited[j]) 가장 거리가 짧은곳(distance[j] < minCost)
                     {
                         next = j;                             // 방문 갱신
                         minCost = distance[j];                // 가중치 갱신
                     }
                 }
-                if (next < 0)
+                if (next < 0)                                 // 더이상 방문할곳이 없다면 종료
                     break;
 
                 // 2. 직접연결된 거리보다 거쳐서 더 짧아진다면 갱신.
                 for (int j = 0; j < size; j++)
                 {
-                    // distance[j] : 목적지까지 직접 연결된 거리
+                    // distance[j]    : 목적지까지 직접 연결된 거리
                     // distance[next] : 탐색중인 정점까지 거리 (해당정점->next : 거치는정점까지 거리)
                     // graph[next, j] : 탐색중인 정점부터 목적지의 거리 (next->j : 거치는정점부터 목적지까지 거리)
-                    if (distance[j] > distance[next] + graph[next, j])
+                    if (distance[j] > distance[next] + graph[next, j])          // 거치는 거리가 직접연결거리보다 작을경우 (최단거리) 
                     {
-                        distance[j] = distance[next] + graph[next, j];
-                        path[j] = next;
+                        distance[j] = distance[next] + graph[next, j];          // 최단거리로 대입
+                        path[j] = next;                                         // 최단거리에 방문정점 갱신
                     }
                 }
                 visited[next] = true;
