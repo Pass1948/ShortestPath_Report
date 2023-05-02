@@ -13,6 +13,7 @@ namespace ShortestPath_Report
         public static void ShortestPath(in int[,] graph, in int start, out int[] distance, out int[] path)
         // distance는 거리(가중치)
         {
+            //============초기화============
             int size = graph.GetLength(0);
             bool[] visited = new bool[size];
 
@@ -23,6 +24,7 @@ namespace ShortestPath_Report
                 distance[i] = graph[start, i];
                 path[i] = graph[start, i] < INF ? start : -1;
             }
+            //=============================
 
             for (int i = 0; i < size; i++)
             {
@@ -34,7 +36,7 @@ namespace ShortestPath_Report
                     if (!visited[j] && distance[j] < minCost) // 방문하지않았으면서 가장 거리가 짧은곳
                     {
                         next = j;                             // 방문 갱신
-                        minCost = distance[j];
+                        minCost = distance[j];                // 가중치 갱신
                     }
                 }
                 if (next < 0)

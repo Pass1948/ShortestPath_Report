@@ -5,17 +5,16 @@
         const int INF = 99999;
         static void Main(string[] args)
         {
-            int[,] graph = new int[9, 9]
+            int[,] graph = new int[8, 8]
             {
-                {   0, INF,   1,   7, INF, INF, INF,   5, INF},
-                { INF,   0, INF, INF, INF,   4, INF, INF, INF},
-                { INF, INF,   0, INF, INF, INF, INF, INF, INF},
-                {   5, INF, INF,   0, INF, INF, INF, INF, INF},
-                { INF, INF,   9, INF,   0, INF, INF, INF,   2},
-                {   1, INF, INF, INF, INF,   0, INF,   6, INF},
-                { INF, INF, INF, INF, INF, INF,   0, INF, INF},
-                {   1, INF, INF, INF,   4, INF, INF,   0, INF},
-                { INF,   5, INF,   2, INF, INF, INF, INF,   0}
+                {   0,   3,   4, INF,   4, INF, INF, INF},
+                {   3,   0, INF,   7, INF,   9,   7, INF},
+                {   4, INF,   0, INF,   3,   2, INF, INF},
+                { INF,   7, INF,   0, INF,   3, INF, INF},
+                {   4, INF,   3, INF,   0, INF,   8,   4},
+                { INF,   9,   2,   3, INF,   0,   9,   3},
+                { INF,   7, INF, INF,   8,   9,   0, INF},
+                { INF, INF, INF, INF,   4,   3, INF,   0}
             };
 
             int[] distance;
